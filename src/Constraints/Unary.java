@@ -9,13 +9,15 @@ public class Unary extends Constraint<Integer>{
 
 	public Unary(String arg0, List<Variable<Integer>> arg1) {
 		super(arg0, arg1);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public boolean isSatisfied(Variable<Integer> arg0, Integer arg1) {
-		// TODO Auto-generated method stub
-		return false;
+		arg0.setValue(arg1);
+		if(arg0.getValue().equals(new Integer(0)))
+			return false;
+		else
+			return true;
 	}
 
 }

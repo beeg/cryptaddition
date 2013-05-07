@@ -1,3 +1,4 @@
+package XMLParser;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +27,11 @@ public class PuzzleParser extends XMLReader{
 				System.out.println("Operands: "+operands);
 			} else if(qName.equals("is:operand"))	{
 				String word = attributes.getValue("word");
+				add(word);
 				System.out.println("Word: "+word);
 			} else if(qName.equals("is:result"))	{
 				String resultWord = attributes.getValue("word");
+				add(resultWord);
 				System.out.println("Result Word: "+resultWord);
 			}			
 		} catch(Exception e)	{
@@ -36,6 +39,14 @@ public class PuzzleParser extends XMLReader{
 		}
 	}
 	
+	public List<List<Variable<Integer>>> getVariables() {
+		return variables;
+	}
+
+	public void setVariables(List<List<Variable<Integer>>> variables) {
+		this.variables = variables;
+	}
+
 	public void createDataStructure(int operands)	{
 		variables = new ArrayList<List<Variable<Integer>>>();
 	}

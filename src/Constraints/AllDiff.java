@@ -15,8 +15,14 @@ public class AllDiff extends Constraint<Integer>{
 	}
 
 	public boolean isSatisfied(Variable<Integer> arg0, Integer arg1) {
-		// TODO Auto-generated method stub
-		return false;
+		arg0.setValue(arg1);
+		for(Variable<Integer> v: this.getVariables())	{
+			if(v.getValue()!=null && arg0!=v)	{
+				if(arg0.getValue().equals(v.getValue()))
+					return false;
+			}
+		}
+		return true;
 	}
 
 	

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<is:puzzle operandMaxLength="3" operands="2" xmlns:is="http://ingenieria.deusto.es">
+	<is:operands>
+		<is:operand word="ODD"/>
+		<is:operand word="ODD"/>
+	</is:operands>
+	<is:result word="EVEN"/>
+</is:puzzle>

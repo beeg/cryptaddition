@@ -13,7 +13,6 @@ public class Unary extends Constraint<Integer>{
 
 	@Override
 	public boolean isSatisfied(Variable<Integer> arg0, Integer arg1) {
-		arg0.setValue(arg1);
 		if(arg0.getValue().equals(new Integer(0)))
 			return false;
 		else

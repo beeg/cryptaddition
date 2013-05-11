@@ -9,30 +9,38 @@ import es.deusto.ingenieria.is.csp.formulation.Variable;
 public class Sum extends Constraint<Integer>{
 	
 	private List<Variable<Integer>> sum;
-	private Variable<Integer> result;
-	private Variable<Integer> carry;
+	private int numberOperands;
 
 	public Sum(String arg0, List<Variable<Integer>> arg1, int numberOperands) {
 		super(arg0, arg1);
-		sum = new ArrayList<Variable<Integer>>();
+		this.numberOperands=numberOperands;
+		this.sum = new ArrayList<Variable<Integer>>();
 		for(int i=0;i<numberOperands;i++)	{
 			sum.add(this.getVariables().get(i));
 		}
-		result = this.getVariables().get(numberOperands);
-		carry = this.getVariables().get(numberOperands+1);
+		System.out.println("Sum constraint created");
+		System.out.println("Sum elements");
+		for(Variable<Integer> v : sum)	{
+			System.out.println(v);
+		}		
 	}
 
-	@Override
 	public boolean isSatisfied(Variable<Integer> arg0, Integer arg1) {
 		arg0.setValue(arg1);
 		int sumValue = 0;
 		for(Variable<Integer> s : this.sum)	{
 			sumValue = s.getValue().intValue();
 		}
-		if(sumValue == ((result.getValue().intValue()*10)+carry.getValue().intValue()))
+		
+		int carry = (this.getVariables().get(numberOperands+1)==null) ? 0 : this.getVariables().get(numberOperands+1).getValue().intValue();
+		
+		if(sumValue == 10*carry + this.getVariables().get(numberOperands).getValue().intValue())	{
+			System.out.println("Sum constraint satisfied");
 			return true;
-		else
+		}	else	{
+			System.out.println("Sum constraint not satisfied");
 			return false;
+		}
 	}
 
 	

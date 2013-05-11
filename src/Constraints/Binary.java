@@ -15,10 +15,13 @@ public class Binary extends Constraint<Integer>{
 	public boolean isSatisfied(Variable<Integer> arg0, Integer arg1) {
 		arg0.setValue(arg1);
 		ArrayList<Variable<Integer>> variables = (ArrayList<Variable<Integer>>) this.getVariables();
-		if(variables.get(0).getValue().equals(variables.get(1).getValue()))
+		if(variables.get(0).getValue().equals(variables.get(1).getValue()))	{
+			System.out.println("Binary constraint satisfied");
 			return true;
-		else
+		}	else	{
+			System.out.println("Binary constraint not satisfied");
 			return false;
+		}
 	}
 
 }

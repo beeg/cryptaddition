@@ -13,6 +13,7 @@ import es.deusto.ingenieria.is.csp.formulation.Variable;
 public class PuzzleParser extends XMLReader{
 	
 	private List<List<Variable<Integer>>> variables;
+	private int numOperands;
 
 	public PuzzleParser(String fileXML) {
 		super(fileXML);
@@ -22,9 +23,9 @@ public class PuzzleParser extends XMLReader{
 			Attributes attributes) throws SAXException {
 		try	{
 			if(qName.equals("is:additionpuzzle") || qName.equals("is:puzzle"))	{
-				int operands = Integer.parseInt(attributes.getValue("operands"));
-				createDataStructure(operands);
-				System.out.println("Operands: "+operands);
+				this.numOperands = Integer.parseInt(attributes.getValue("operands"));
+				createDataStructure(numOperands);
+				System.out.println("Operands: "+ numOperands);
 			} else if(qName.equals("is:operand"))	{
 				String word = attributes.getValue("word");
 				add(word);
@@ -45,6 +46,14 @@ public class PuzzleParser extends XMLReader{
 
 	public void setVariables(List<List<Variable<Integer>>> variables) {
 		this.variables = variables;
+	}
+
+	public int getNumOperands() {
+		return numOperands;
+	}
+
+	public void setNumOperands(int numOperands) {
+		this.numOperands = numOperands;
 	}
 
 	public void createDataStructure(int operands)	{
